@@ -63,7 +63,8 @@ router.post('/register/:eventId', auth, async function(req,res){
   var reg = await Registration.create({
     eventId:evt._id, userId:req.user._id, status:'registered',
     ticketId:tid, qrData:qr, formData:fd,
-    paymentStatus:'none'
+    paymentStatus: (evt.registrationFee && evt.registrationFee>0) ? 'pending' : 'none',
+    totalAmount: (evt.registrationFee && evt.registrationFee>0) ? evt.registrationFee : 0
   });
   sendTicketEmail(req.user.email, evt.name, req.user.firstName, tid, qr, evt.type);
   res.status(201).json(reg);

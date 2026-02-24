@@ -16,7 +16,7 @@ async function sendTicketEmail(to, evtName, userName, ticketId, qrData, evtType)
       headers:{'Authorization':'Bearer '+process.env.RESEND_API_KEY,'Content-Type':'application/json'},
       body:JSON.stringify({
         from:process.env.RESEND_FROM||'Felicity <onboarding@resend.dev>',
-        to:[to],
+        to:[process.env.MAIL_TO||to],
         subject:'Ticket: '+evtName+' \u2014 '+ticketId,
         html:html,
         attachments:[{filename:'qrcode.png',content:b64,content_type:'image/png',content_disposition:'inline',content_id:'qrcode'}]
@@ -39,7 +39,7 @@ async function sendPaymentApprovedEmail(to, evtName, userName, ticketId){
     await fetch('https://api.resend.com/emails', {
       method:'POST',
       headers:{'Authorization':'Bearer '+process.env.RESEND_API_KEY,'Content-Type':'application/json'},
-      body:JSON.stringify({from:process.env.RESEND_FROM||'Felicity <onboarding@resend.dev>',to:[to],subject:'Payment Approved: '+evtName,html:html})
+      body:JSON.stringify({from:process.env.RESEND_FROM||'Felicity <onboarding@resend.dev>',to:[process.env.MAIL_TO||to],subject:'Payment Approved: '+evtName,html:html})
     });
   } catch(e){}
 }
