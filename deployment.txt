@@ -1,0 +1,3 @@
+Frontend URL: https://dassa1frontend-two.vercel.app
+Backend URL: https://dass-a1-backend-ns7k.onrender.com
+Database: MongoDB Atlas (cluster0.nsvteai.mongodb.net / festdb)
