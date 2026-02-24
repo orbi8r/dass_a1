@@ -32,29 +32,29 @@ event management platform for iiit hyderabad felicity fest.  MERN stack.
 
 ### tier A
 
-**hackathon team registration (8 marks)**
+**hackathon team registration**
 
 team leader creates a team and gets a unique invite code (crypto.randomBytes). members join with the code then accept/reject the invite.  once minimum size is reached with enough accepts, everyone gets auto registered and tickets+qr codes are generated. implementation uses mongoose refs between Team, Registration and Event models.chose this feature cuz its got complex state management with multiple users affecting the same team document.
 
-**merchandise payment approval (8 marks)**
+**merchandise payment approval**
 
 when a participant buys merch they can upload payment proof (image via multer). organizer reviews pending proofs and approves or rejects. approval generates ticket and qr code, rejection restores the variant stock back. uses paymentStatus field on Registration model with states none/pending/approved/rejected. picked this because it combines file uploads, inventory tracking and approval workflows into one feature.
 
 
 ### tier B
 
-**realtime discussion forum (6 marks)**
+**realtime discussion forum**
 
 socket.io powered forum on each event page.  threaded replies using parentId on ForumPost model. reactions (like and fire) with toggle. organizer can pin posts and delete any post, regular users can only delete their own.  uses socket.io rooms per event so messages only broadcast to people viewing that event.  went with this because websockets are interesting to implement and it shows proper realtime state sync.
 
-**organizer password reset (6 marks)**
+**organizer password reset**
 
 organizers submit  reset requests with a reason, admin reviews them. admin can approve (generates random password or sets a custom one) or reject with comment. request history tracked. chose this as it demonstrates a proper approval workflow between two roles with credential management.
 
 
 ### tier C
 
-**anonymous feedback (2 marks)**
+**anonymous feedback**
 
 participants rate events 1 to 5 stars with optional comments.  one review per user per event enforced server side. only people who actually registered (or got merch purchase approved) can leave feedback. organizer sees aggregated ratings without user identity. simple but gets the job done for quality tracking.
 
