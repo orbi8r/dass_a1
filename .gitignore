@@ -1,8 +1,0 @@
-node_modules
-.env
-backend/.env
-backend/uploads
-frontend/build
-deployment.txt
-README.md
-REQ.md
